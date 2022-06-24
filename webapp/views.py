@@ -1,24 +1,29 @@
 from django.shortcuts import render
 
-from webapp.models import Article
+from webapp.models import STATUS_CHOICES, Task
 
 
 def index_view(request):
-    articles = Article.objects.all()
-    context = {
-        'articles': articles
-    }
-    return render(request, 'index.html', context)
-    return render(request, 'index.html', context)
+    return render(request, 'index.html')
 
 
-def create_article(request):
+def create_task(request):
     if request.method == "GET":
-        return render(request, "create.html")
+        context = {'status1': STATUS_CHOICES}
+        return render(request, "create.html", context)
     else:
-        description = request.POST.get("title")
-        status = request.POST.get("author")
-        date = request.POST.get("content")
-        new_article = Article.objects.create(description=description, status=status, date=date)
-        context = {"article": new_article}
-        return render(request, "article_view.html", context)
+        description = request.POST.get("description")
+        status = request.POST.get("status")
+        date = request.POST.get("date")
+        new_task = Task.objects.create(description=description, status=status, date=date)
+        context = {"new_task": new_task}
+        return render(request, "create.html", context)
+
+
+def tasks_view(request):
+
+    tasks = Task.objects.all()
+    context = {
+        'tasks': tasks
+    }
+    return render(request, 'tasks_view.html', context)

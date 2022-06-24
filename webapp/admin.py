@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from webapp.models import Article
+from webapp.models import Task
 
-admin.site.register(Article)
+admin.site.register(Task)
