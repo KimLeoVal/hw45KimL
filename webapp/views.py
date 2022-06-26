@@ -12,6 +12,7 @@ def create_task(request):
         context = {'status1': STATUS_CHOICES}
         return render(request, "create.html", context)
     else:
+        title = request.POST.get("title")
         description = request.POST.get("description")
         status = request.POST.get("status")
         date = request.POST.get("date")

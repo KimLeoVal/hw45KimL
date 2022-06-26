@@ -10,6 +10,7 @@
 <body>
 <div>
     {% for task in tasks %}
+        <h3>Название: <i>{{ task.title }}</i></h3>
         <h3>Задача: <i>{{ task.description }}</i></h3>
         <h3>Статус:    <i>{{ task.status }}</i></h3>
         <h3>Дата выполнения: <i>{{ task.date }}</i></h3>

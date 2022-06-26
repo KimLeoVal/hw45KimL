@@ -10,6 +10,8 @@
 
 <form action="/create/" method="post">
     {% csrf_token %}
+    <label>Название:</label><br/>
+    <input type="text" name="title"/><br/>
     <label>Описание:</label><br/>
     <input type="text" name="description"/><br/>
     <label>Статус:</label><br/>
@@ -25,6 +27,7 @@
 </form>
 <br>
 {% if  new_task %}
+        <h3>Название: <i>{{ new_task.title }}</i></h3>
         <h3>Задача: <i>{{ new_task.description }}</i></h3>
         <h3>Статус:    <i>{{ new_task.status }}</i></h3>
         <h3>Дата выполнения: <i>{{ new_task.date }}</i></h3>
