@@ -12,10 +12,10 @@
     {% for task in tasks %}
         <h3>Название: <i>{{ task.title }}</i></h3>
         <h3>Задача: <i>{{ task.description }}</i></h3>
-        <a href="task/{{ task.pk }}">Детальный просмотр</a>
+        <a href="{% url "task_view" task.pk %}">Детальный просмотр</a>
         <br>
     {% endfor %}
 </div>
-<a href="/">На главную</a>
+<a href="{% url "index_view" %}">На главную</a>
 </body>
 </html>
