@@ -16,15 +16,22 @@ def create_task(request):
         description = request.POST.get("description")
         status = request.POST.get("status")
         date = request.POST.get("date")
-        new_task = Task.objects.create(description=description, status=status, date=date)
+        new_task = Task.objects.create(description=description, status=status, date=date, title=title)
         context = {"new_task": new_task}
         return render(request, "create.html", context)
 
 
 def tasks_view(request):
-
     tasks = Task.objects.all()
     context = {
         'tasks': tasks
     }
     return render(request, 'tasks_view.html', context)
+
+
+def task_view(request, pk):
+    task = Task.objects.get(pk=pk)
+    context = {
+        'task': task
+    }
+    return render(request, 'task_view.html',context)
