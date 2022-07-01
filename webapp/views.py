@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from webapp.models import STATUS_CHOICES, Task
 
+from hw45KimL.webapp.forms import TaskForm
 
 
 def index_view(request):
@@ -12,18 +13,19 @@ def index_view(request):
 
 def create_task(request):
     if request.method == "GET":
-        context = {'stat1': STATUS_CHOICES}
+        form=TaskForm()
+        context = {'stat1': STATUS_CHOICES, 'form':form}
         return render(request, "create.html", context)
     else:
-        title = request.POST.get("title")
-        description = request.POST.get("description")
-        status = request.POST.get("status")
-        date = request.POST.get("date")
-        new_task = Task.objects.create(description=description, status=status, date=date, title=title)
-        # context = {"new_task": new_task}
-        print(new_task.pk)
-        return redirect("task_view", pk=new_task.pk)
-
+        form = TaskForm(data=request.POST)
+        if form.is_valid():
+            title = form.cleaned_data.get("title")
+            description = form.cleaned_data.get("description")
+            status = form.cleaned_data.get("status")
+            date = form.cleaned_data.get("date")
+            new_task = Task.objects.create(description=description, status=status, date=date, title=title)
+            return redirect("task_view", pk=new_task.pk)
+        return render(request, "create.html", {'form':form})
 
 def tasks_view(request):
     tasks = Task.objects.all()
