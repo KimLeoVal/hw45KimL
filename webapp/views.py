@@ -56,7 +56,10 @@ def update_task(request, pk):
 
 def delete_task(request, pk):
     task = get_object_or_404(Task, pk=pk)
-    task.delete()
-    return redirect("tasks_view")
+    if request.method == "GET":
+        return render(request, "delete.html", {'task':task})
+    else:
+        task.delete()
+        return redirect("tasks_view")
 
 
