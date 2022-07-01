@@ -6,7 +6,7 @@
         <h3>Статус:    <i>{{ task.status }}</i></h3>
         <h3>Дата выполнения: <i>{{ task.date }}</i></h3>
         <br>
-
+<a href="{% url "update_task" task.pk %}">Update</a>
 </div>
 <a href="{% url "index_view" %}">На главную</a>
 {%  endblock %}
