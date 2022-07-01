@@ -12,7 +12,7 @@ def index_view(request):
 
 def create_task(request):
     if request.method == "GET":
-        context = {'status1': STATUS_CHOICES}
+        context = {'stat1': STATUS_CHOICES}
         return render(request, "create.html", context)
     else:
         title = request.POST.get("title")

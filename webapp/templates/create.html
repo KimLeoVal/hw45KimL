@@ -3,21 +3,7 @@
 <h1>Create Task</h1>
 
 <form action="/create/" method="post">
-    {% csrf_token %}
-    <label>Название:</label><br/>
-    <input type="text" name="title"/><br/>
-    <label>Описание:</label><br/>
-    <input type="text" name="description"/><br/>
-    <label>Статус:</label><br/>
-    <p><select  name="status">
-    {% for stat,value in status1 %}
-        <option >{{ value }}</option>
-        {% endfor %}
-   </select></p>
-    <label>Дата выполнения:</label><br/>
-    <input type="text" name="date"/><br/>
-    <br/>
-    <input type="submit" value="Send"/>
+   {% include "partial/form.html" with text_btn='Create' %}
 </form>
 <br>
 {% if  new_task %}

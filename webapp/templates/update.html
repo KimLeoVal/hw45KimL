@@ -4,21 +4,8 @@
 
 <form action="" method="post">
 {#{% include 'partial/task_form.html' with button_text='Update'%}#}
-   {% csrf_token %}
-    <label>Название:</label><br/>
-    <input type="text" name="title" value={{ task.title }}><br/>
-    <label>Описание:</label><br/>
-    <textarea type="text" name="description"/>{{ task.description }}</textarea><br/>
-    <label>Статус:</label><br/>
-    <p><select  name="status" >
-    {% for stas,value in stat1 %}
-        <option >{{ value }}</option>
-        {% endfor %}
-   </select></p>
-    <label>Дата выполнения:</label><br/>
-    <input type="date" name="date" value="task.date"/><br/>
-    <br/>
-    <p><input type="submit" value="Update"/></p>
+   {% include "partial/form.html" with text_btn='Update' %}
+
 
 </form>
 <br>
