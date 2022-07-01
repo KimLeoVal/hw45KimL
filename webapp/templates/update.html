@@ -2,23 +2,23 @@
 {% block content %}
 <h1>Update Task</h1>
 
-<form action="{% url 'update_task' task.pk %}" method="post">
+<form action="" method="post">
 {#{% include 'partial/task_form.html' with button_text='Update'%}#}
    {% csrf_token %}
     <label>Название:</label><br/>
-    <input type="text" name="title" value={{ task.title }}/><br/>
+    <input type="text" name="title" value={{ task.title }}><br/>
     <label>Описание:</label><br/>
-    <textarea type="text" name="description"/>task.description</textarea><br/>
+    <textarea type="text" name="description"/>{{ task.description }}</textarea><br/>
     <label>Статус:</label><br/>
     <p><select  name="status" >
-    {% for stat,value in status1 %}
-        <option value="stat">{{ value }}</option>
+    {% for stas,value in stat1 %}
+        <option >{{ value }}</option>
         {% endfor %}
    </select></p>
     <label>Дата выполнения:</label><br/>
     <input type="date" name="date" value="task.date"/><br/>
     <br/>
-    <p><input type="submit" value="{{ button_text  }}"/></p>
+    <p><input type="submit" value="Update"/></p>
 
 </form>
 <br>

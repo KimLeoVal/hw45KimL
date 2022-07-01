@@ -41,9 +41,9 @@ def task_view(request, pk):
     return render(request, 'task_view.html', context)
 
 def update_task(request, pk):
+    task = get_object_or_404(Task, pk=pk)
     if request.method == "GET":
-        task = get_object_or_404(Task, pk=pk)
-        context = {'task': task}
+        context = {'task': task, "stat1":STATUS_CHOICES }
         return render(request, "update.html", context)
     else:
         task.title = request.POST.get("title")
@@ -51,5 +51,12 @@ def update_task(request, pk):
         task.status = request.POST.get("status")
         task.date = request.POST.get("date")
         task.save()
+        print(task)
         return redirect("task_view", pk=task.pk)
+
+def delete_task(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.delete()
+    return redirect("tasks_view")
+
 
